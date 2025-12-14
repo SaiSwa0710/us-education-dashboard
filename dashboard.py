@@ -7,9 +7,20 @@ from pyathena import connect
 st.set_page_config(page_title="US Education Dashboard", layout="wide")
 st.title("US Education Dashboard")
 
-REGION = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
-DB = "us_education_curated"
-RESULTS_S3 = "s3://us-education-pipeline-2025/athena-results/"
+REGION = st.secrets.get(
+    "AWS_DEFAULT_REGION",
+    os.getenv("AWS_DEFAULT_REGION", "us-east-1")
+)
+
+DB = st.secrets.get(
+    "ATHENA_DB",
+    os.getenv("ATHENA_DB", "us_education_curated")
+)
+
+RESULTS_S3 = st.secrets.get(
+    "ATHENA_OUTPUT",
+    os.getenv("ATHENA_OUTPUT", "s3://us-edu-pipeline-2025/athena-results/")
+)
 
 # Prefer the view you created earlier. If you didn't create it, we'll fallback.
 PREFERRED_SOURCE = "v_state_year_metrics"
