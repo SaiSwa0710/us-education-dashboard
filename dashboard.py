@@ -19,7 +19,7 @@ DB = st.secrets.get(
 
 RESULTS_S3 = st.secrets.get(
     "ATHENA_OUTPUT",
-    os.getenv("ATHENA_OUTPUT", "s3://us-edu-pipeline-2025/athena-results/")
+    os.getenv("ATHENA_OUTPUT", "s3://us-education-pipeline-2025/athena-results/")
 )
 
 # Prefer the view you created earlier. If you didn't create it, we'll fallback.
